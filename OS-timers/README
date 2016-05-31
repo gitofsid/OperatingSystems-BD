@@ -1,0 +1,63 @@
+
+To compile using makfile- 
+
+1. if all files need to be compiled run 'make all' or 'make'. This will create all five executables
+2. For target compilation - 'make timer', 'make msys', 'make mfunction', 'make process_switch', 'make thread_switch'
+3. To clean targets - 'make clean'
+4. Individual compilation using gcc is mentioned in every answer
+5. if an executable is available and no changes are made to code it will not run as its uptodate
+
+
+Answer 1 - 
+compile - gcc hr_timer.c -o timer
+execute - ./timer
+
+Run 1:
+CLOCK_REALTIME Measured: 1000063577
+CLOCK_MONOTONIC Measured: 1000069409
+CLOCK_PROCESS_CPUTIME_ID Measured: 13829
+CLOCK_THREAD_CPUTIME_ID Measured: 68714
+
+Run 2:
+CLOCK_REALTIME Measured: 1000068859
+CLOCK_MONOTONIC Measured: 1000066621
+CLOCK_PROCESS_CPUTIME_ID Measured: 13871
+CLOCK_THREAD_CPUTIME_ID Measured: 14905
+
+Run 3:
+CLOCK_REALTIME Measured: 1232690025
+CLOCK_MONOTONIC Measured: 1000065486
+CLOCK_PROCESS_CPUTIME_ID Measured: 17070
+CLOCK_THREAD_CPUTIME_ID Measured: 14556
+
+Answer 2 -  
+compile - gcc minimal_function.c -o mfunction
+execute - ./mfunction
+
+Run 1: 20 ns
+Run 2: 20 ns
+Run 3: 25 ns
+
+Answer 3 - 
+compile - gcc minimal_sys.c -o msys
+execute - ./msys
+
+Run 1: 29 ns
+Run 2: 38 ns
+Run 3: 31 ns
+
+Answer 4 -
+compile - gcc process_switch.c -o process_switch
+execute - ./process_switch
+
+Run 1: 1360 ns
+Run 2: 1440 ns
+Run 3: 1480 ns
+
+Answer 5 - 
+compile - gcc thread_switch.c -lpthread -o thread_switch
+execute - ./thread_switch
+
+Run 1: 1319 ns
+Run 2: 1269 ns
+Run 3: 1420 ns
