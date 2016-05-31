@@ -1,0 +1,111 @@
+Note
+======
+
+Makefile has been changed to take in arguments from user so we can directly pass in parameters
+if using 'make run' instead of mylocks binary
+
+
+To run using makefile with default values
+==========================================
+make clean
+make mylocks
+make run or ./mylocks 
+
+will run with default values of parameters
+
+To run using makefile with user defined values
+===============================================
+
+make clean
+make mylocks
+make ARGS="-t #threads -i #Itterations -o #OperationsOutsideCS -c #OperationsInsideCS -d testid" run
+
+or 
+
+./mylocks -t #threads -i #Itterations -o #OperationsOutsideCS -c #OperationsInsideCS -d testid
+
+
+***************
+RESULTS
+***************
+
+With default values -
+-----------------------
+
+my values -t 4 -i 1000000 -o 0 -c 1 -d 0
+Threaded Run Pthread (Mutex) Total Count: 4000000
+Pthread Mutex time(ms): 271
+Threaded Run Pthread (SpinMutex) Total Count: 4000000
+Pthread Spin Mutex time(ms): 200
+Threaded Run MySpinlockTAS Total Count: 4000000
+MySpinlockTAS time(ms): 200
+Threaded Run MySpinlockTAS Total Count: 4000000
+MySpinlockTAS time(ms): 620
+Threaded Run MyMutex (TTAS) Total Count: 4000000
+MyMutexLock (TTAS) time(ms): 161
+Threaded Run MyQueue Total Count: 4000000
+MyQueue time(ms): 676
+
+
+With custom values -
+-----------------------
+
+
+Threads	Iterations	Pthread Mutex	Pthread Spin Mutex	MySpinlockTAS	MySpinlockTTAS	MyMutexLock (TTAS)	MyQueue 
+
+1	100	931	498	406	410	403	405
+1	1000	141	113	110	107	107	106
+1	10000	30	16	21	21	21	35
+1	100000	27	13	18	24	18	40
+1	1000000	23	11	17	17	17	31
+1	10000000	24	11	17	17	17	31
+
+
+2	100	1532	1215	1173	588	572	500
+2	1000	187	134	132	123	129	129
+2	10000	167	88	151	173	45	176
+2	100000	128	23	35	168	35	326
+2	1000000	151	73	258	189	35	332
+2	10000000	141	95	285	194	34	294
+
+3	100	1354	658	556	663	516	933
+3	1000	189	144	417	288	164	382
+3	10000	134	85	359	221	74	842
+3	100000	163	217	207	339	53	96
+3	1000000	191	203	356	298	130	550
+3	10000000	265	191	606	463	67	1069
+
+4	100	1804	669	636	783	744	580
+4	1000	255	182	301	239	207	336
+4	10000	261	53	299	84	82	133
+4	100000	200	145	569	631	733	1275
+4	1000000	299	225	1162	564	111	1165
+4	10000000	274	296	1225	990	86	1453
+
+5	100	2311	913	700	822	877	1338
+5	1000	262	274	576	370	197	597
+5	10000	138	70	207	94	93	166
+5	100000	435	119	491	856	393	621
+5	1000000	489	324	1286	860	148	1426
+5	10000000	353	693	1804	1052	256	1903
+
+9	100	4961	2024	2502	1848	2619	2080
+9	1000	556	258	777	471	400	402
+9	10000	885	1752	2748	1990	172	1737
+9	100000	459	592	2598	2163	904	4044
+9	1000000	738	1583	2279	3056	545	6558
+9	10000000	689	1858	5090	4138	1094	7791
+
+13	100	4750	2012	2026	1723	2215	1968
+13	1000	783	325	437	11542	404	1557
+13	10000	691	166	4540	1291	248	5555
+13	100000	998	2829	7129	6473	2902	10181
+13	1000000	922	2957	6287	5259	3286	13360
+13	10000000	1068	3637	10424	7610	2810	11810
+
+18	100	5459	2480	2789	2498	2820	2728
+18	1000	999	641	1829	16572	639	813
+18	10000	2504	2479	6483	12628	30424	621
+18	100000	1645	4811	18772	10641	1553	17472
+18	1000000	1127	4596	21324	15345	7619	28238
+18	10000000	672	6670	25714	11346	9234	32849
